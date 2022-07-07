@@ -5,9 +5,9 @@ import torch.nn.functional as F
 
 def PGD(model, x, y, optimizer, args):
 	model.eval()
-	epsilon = args.eps
-	num_steps = args.ns
-	step_size = args.ss
+	epsilon = 8/255.
+	num_steps = 10
+	step_size = 2/255.
 	x_adv = x.detach() + torch.FloatTensor(*x.shape).uniform_(-epsilon, epsilon).cuda()
 	for _ in range(num_steps):
 		x_adv.requires_grad_()
